@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="text-3xl font-bold underline">Lista de Missões</h1>
+
+<table class="table-auto border-collapse border border-gray-400 w-full">
+    <thead>
+        <tr>
+            <th class="border border-gray-300">Data</th>
+            <th class="border border-gray-300">Descrição</th>
+            <th class="border border-gray-300">Profissionais</th>
+            <th class="border border-gray-300">Frotas</th>
+            <th class="border border-gray-300">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for mission in missions %}
+        <tr>
+            <td class="border border-gray-300">{{ mission.mission_date }}</td>
+            <td class="border border-gray-300">{{ mission.description }}</td>
+            <td class="border border-gray-300">
+                {% for operator_professional in mission.operator_professional.all %}
+                    {{ operator_professional.name }} - {{ operator_professional.role }}<br>
+                {% endfor %}
+            </td>
+            <td class="border border-gray-300">
+                {% for operator_fleet in mission.operator_fleet.all %}
+                    {{ operator_fleet.fleet_type }} - {{ operator_fleet.fleet_model }}<br>
+                {% endfor %}
+            </td>
+            <td class="border border-gray-300">{{ mission.status }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

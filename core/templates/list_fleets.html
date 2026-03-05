@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="text-3xl font-bold underline mb-4">Lista de Frotas</h1>
+
+<a href="{% url 'create_fleet' %}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+    Adicionar Frota
+</a>
+<table class="mt-4 table-auto border-collapse border border-gray-400 w-full">
+    <thead>
+        <tr>
+            <th class="border border-gray-300">Tipo da Frota</th>
+            <th class="border border-gray-300">Modelo da Frota</th>
+            <th class="border border-gray-300">Status</th>
+            <th class="border border-gray-300">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for fleet in fleets %}
+        <tr>
+            <td class="border border-gray-300">{{ fleet.fleet_type }}</td>
+            <td class="border border-gray-300">{{ fleet.fleet_model }}</td>
+            <td class="border border-gray-300">{{ fleet.status }}</td>
+            <td class="border border-gray-300 text-center py-2">
+                <a href="{% url 'update_fleet' fleet.id %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Editar
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

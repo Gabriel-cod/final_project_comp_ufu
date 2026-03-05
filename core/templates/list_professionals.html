@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="text-3xl font-bold underline mb-4">Lista de Profissionais</h1>
+
+<a href="{% url 'create_professional' %}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+    Adicionar Profissional
+</a>
+<table class="mt-4 table-auto border-collapse border border-gray-400 w-full">
+    <thead>
+        <tr>
+            <th class="border border-gray-300">Nome</th>
+            <th class="border border-gray-300">Cargo</th>
+            <th class="border border-gray-300">Status</th>
+            <th class="border border-gray-300">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for professional in professionals %}
+        <tr>
+            <td class="border border-gray-300">{{ professional.name }}</td>
+            <td class="border border-gray-300">{{ professional.role }}</td>
+            <td class="border border-gray-300">{{ professional.status }}</td>
+            <td class="border border-gray-300 text-center py-2">
+                <a href="{% url 'update_professional' professional.id %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Editar
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

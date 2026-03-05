@@ -2,9 +2,12 @@
 
 {% block content %}
 
-<h1 class="text-3xl font-bold underline">Lista de Missões</h1>
+<h1 class="text-3xl font-bold underline mb-4">Lista de Missões</h1>
 
-<table class="table-auto border-collapse border border-gray-400 w-full">
+<a href="{% url 'create_mission' %}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+    Nova Missão
+</a>
+<table class="mt-4 table-auto border-collapse border border-gray-400 w-full">
     <thead>
         <tr>
             <th class="border border-gray-300">Data</th>
@@ -12,6 +15,7 @@
             <th class="border border-gray-300">Profissionais</th>
             <th class="border border-gray-300">Frotas</th>
             <th class="border border-gray-300">Status</th>
+            <th class="border border-gray-300">Ações</th>
         </tr>
     </thead>
     <tbody>
@@ -30,6 +34,11 @@
                 {% endfor %}
             </td>
             <td class="border border-gray-300">{{ mission.status }}</td>
+            <td class="border border-gray-300 text-center py-2">
+                <a href="{% url 'update_mission' mission.id %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Editar
+                </a>
+            </td>
         </tr>
         {% endfor %}
     </tbody>

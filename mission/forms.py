@@ -9,7 +9,7 @@ class MissionUpdateForm(forms.ModelForm):
         model = Mission
         fields = ['mission_date', 'description', 'operator_professional', 'operator_fleet', 'status']
         widgets = {
-            'mission_date': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
+            'mission_date': forms.DateInput(attrs={'class': 'form-control'}),
             'description': forms.Textarea(attrs={'class': 'form-control'}),
             'status': forms.Select(attrs={'class': 'form-select'}),
         }

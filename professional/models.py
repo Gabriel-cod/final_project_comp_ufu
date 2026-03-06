@@ -36,6 +36,7 @@ class OperatorProfessional(models.Model):
     class Meta:
         verbose_name = "Profissional"
         verbose_name_plural = "Profissionais"
+        ordering = ['name']
 
 
 class OperatorFleet(models.Model):
@@ -49,3 +50,4 @@ class OperatorFleet(models.Model):
     class Meta:
         verbose_name = "Frota"
         verbose_name_plural = "Frotas"
+        ordering = ['fleet_model']

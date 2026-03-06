@@ -21,11 +21,12 @@ class Mission(models.Model):
             ("Finalizada", "Finalizada")
         ]
     )
+    
 
     def __str__(self):
         return f"{self.mission_date} - {self.status}"
 
     class Meta:
-        ordering = ["-mission_date"]
+        ordering = ["mission_date"]
         verbose_name = "Missão"
         verbose_name_plural = "Missões"

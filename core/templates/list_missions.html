@@ -2,46 +2,90 @@
 
 {% block content %}
 
-<h1 class="text-3xl font-bold underline mb-4">Lista de Missões</h1>
+<!-- INÍCIO DO EXEMPLO DO content -->
+        
+        <div class="flex justify-between items-end mb-6 border-b border-gray-700 pb-2">
+            <div>
+                <h1 class="text-2xl text-white tracking-widest">Painel Tático // Missões</h1>
+                <p class="text-xs text-[#42827a] mt-1">STATUS: ONLINE | 12 REGISTROS ENCONTRADOS</p>
+            </div>
+            <!-- Exemplo de Botão Primário -->
+            <a href="{% url 'create_mission' %}" class="btn-primary px-6 py-2 text-sm flex items-center gap-2 cursor-pointer">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
+                Nova Missão
+            </a>
+        </div>
 
-<a href="{% url 'create_mission' %}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
-    Nova Missão
-</a>
-<table class="mt-4 table-auto border-collapse border border-gray-400 w-full">
-    <thead>
-        <tr>
-            <th class="border border-gray-300">Data</th>
-            <th class="border border-gray-300">Descrição</th>
-            <th class="border border-gray-300">Profissionais</th>
-            <th class="border border-gray-300">Frotas</th>
-            <th class="border border-gray-300">Status</th>
-            <th class="border border-gray-300">Ações</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for mission in missions %}
-        <tr>
-            <td class="border border-gray-300">{{ mission.mission_date }}</td>
-            <td class="border border-gray-300">{{ mission.description }}</td>
-            <td class="border border-gray-300">
-                {% for operator_professional in mission.operator_professional.all %}
-                    {{ operator_professional.name }} - {{ operator_professional.role }}<br>
-                {% endfor %}
-            </td>
-            <td class="border border-gray-300">
-                {% for operator_fleet in mission.operator_fleet.all %}
-                    {{ operator_fleet.fleet_type }} - {{ operator_fleet.fleet_model }}<br>
-                {% endfor %}
-            </td>
-            <td class="border border-gray-300">{{ mission.status }}</td>
-            <td class="border border-gray-300 text-center py-2">
-                <a href="{% url 'update_mission' mission.id %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    Editar
-                </a>
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+        <!-- Grid de Cards de Missões -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            {% for mission in missions %}
+            <div class="sci-fi-panel p-5 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-xs bg-[#6ac2b9]/20 text-[#6ac2b9] px-2 py-1 border border-[#6ac2b9]/40">
+                            {% if mission.status == "Em execução" %}
+                            EM ANDAMENTO
+                            {% else %}
+                            CONCLUÍDA
+                            {% endif %}
+                        </span>
+                        <span class="text-xs text-gray-500">Data: {{ mission.mission_date }}</span>
+                    </div>
+                    <h3 class="text-lg text-white mb-2">OPERAÇÃO #{{ mission.id }}</h3>
+                    <p class="text-xs text-gray-400 mb-4 line-clamp-2">{{ mission.description }}</p>
+                    
+                    <div class="space-y-2 text-xs mb-6">
+                        <div class="flex justify-between border-b border-gray-800 pb-1">
+                            <span class="text-[#42827a]">PROFISSIONAL:</span>
+                            {% for professional in mission.operator_professional.all %}
+                            <span class="text-gray-300">[{{ professional.name }} - {{ professional.role }}] </span>
+                            {% endfor %}
+                        </div>
+                        <div class="flex justify-between border-b border-gray-800 pb-1">
+                            <span class="text-[#42827a]">FROTA:</span>
+                            {% for fleet in mission.operator_fleet.all %}
+                            <span class="text-gray-300">[{{ fleet.fleet_model }}] </span>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exemplo de Botões dentro do Card -->
+                <div class="flex gap-3">
+                    <a href="{% url 'update_mission' mission.id %}" class="btn-tactical flex-1 py-2 text-xs cursor-pointer text-center">Atualizar Missão</a>
+                </div>
+            </div>
+            {% endfor %}
+
+            <!-- Card Exemplo 2 -->
+            <div class="sci-fi-panel p-5 flex flex-col justify-between border-gray-700 border">
+                <div>
+                    <div class="flex justify-between items-start mb-4">
+                        <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 border border-gray-700">CONCLUÍDA</span>
+                        <span class="text-xs text-gray-500">ID: #M-8834</span>
+                    </div>
+                    <h3 class="text-lg text-white mb-2 text-gray-500">VARREDURA DE SISTEMA</h3>
+                    <p class="text-xs text-gray-500 mb-4 line-clamp-2">Análise de vulnerabilidade concluída sem anomalias detectadas no perímetro.</p>
+                    
+                    <div class="space-y-2 text-xs mb-6 opacity-70">
+                        <div class="flex justify-between border-b border-gray-800 pb-1">
+                            <span class="text-[#42827a]">PROFISSIONAL:</span>
+                            <span class="text-gray-400">J. DOE</span>
+                        </div>
+                        <div class="flex justify-between border-b border-gray-800 pb-1">
+                            <span class="text-[#42827a]">FROTA:</span>
+                            <span class="text-gray-400">ECHO-BASE</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex gap-3">
+                    <button class="btn-tactical flex-1 py-2 text-xs cursor-pointer text-center opacity-70 hover:opacity-100">Ver Relatório</button>
+                </div>
+            </div>
+
+        </div>
+        <!-- FIM DO EXEMPLO DO content -->
 
 {% endblock %}

@@ -4,12 +4,10 @@
 
 <h1 class="text-3xl font-bold underline w-full text-center">Atualização e Criação de Missões</h1>
 
-<form method="post" class="max-w-md mx-auto mt-8 p-4 bg-gray-300 rounded">
+<form method="post">
     {% csrf_token %}
 
-    <table class="table-auto text-left">
-        {{ form.as_table }}
-    </table>
+    {{ form.as_p }}
 
     <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4" style="cursor: pointer;">
         Salvar

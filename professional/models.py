@@ -12,6 +12,11 @@ class Status(models.Model):
         verbose_name_plural = "Status"
 
 
+def get_default_status():
+    status, _ = Status.objects.get_or_create(status_name="Disponivel")
+    return status.pk
+
+
 class OperatorProfessional(models.Model):
     ROLE_LIST = [
         ("Piloto", "Piloto"),
@@ -23,7 +28,7 @@ class OperatorProfessional(models.Model):
 
     name = models.CharField(max_length=20, verbose_name="Nome")
     role = models.CharField(choices=ROLE_LIST, verbose_name="Cargo")
-    status = models.ForeignKey(Status, on_delete=models.SET_NULL, null=True)
+    status = models.ForeignKey(Status, on_delete=models.PROTECT, default=get_default_status)
 
     def __str__(self):
         return f"{self.name} - {self.role}"
@@ -36,7 +41,7 @@ class OperatorProfessional(models.Model):
 class OperatorFleet(models.Model):
     fleet_type = models.CharField(max_length=50, verbose_name="Tipo da Frota")
     fleet_model = models.CharField(max_length=50, verbose_name="Modelo da Frota")
-    status = models.ForeignKey(Status, on_delete=models.SET_NULL, null=True)
+    status = models.ForeignKey(Status, on_delete=models.PROTECT, default=get_default_status)
 
     def __str__(self):
         return f"{self.fleet_type} - {self.fleet_model}"

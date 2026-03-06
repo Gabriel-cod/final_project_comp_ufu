@@ -12,6 +12,11 @@ class OperatorProfessionalForm(forms.ModelForm):
             'status': forms.Select(attrs={'class': 'form-select'}),
         }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        
+        self.fields['status'].disabled = True
+
 
 class OperatorFleetForm(forms.ModelForm):
     class Meta:
@@ -23,3 +28,7 @@ class OperatorFleetForm(forms.ModelForm):
             'status': forms.Select(attrs={'class': 'form-select'}),
         }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['status'].disabled = True

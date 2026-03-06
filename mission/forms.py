@@ -5,12 +5,6 @@ class MissionUpdateForm(forms.ModelForm):
     class Meta:
         model = Mission
         fields = ['mission_date', 'description', 'operator_professional', 'operator_fleet', 'status']
-<<<<<<< Updated upstream
-        widgets = {
-            'mission_date': forms.DateInput(attrs={'class': 'form-control'}),
-            'description': forms.Textarea(attrs={'class': 'form-control'}),
-            'status': forms.Select(attrs={'class': 'form-select'}),
-=======
         
         # Definindo as labels aqui para que o {{ form.as_p }} ou {{ form.as_table }} 
         # as renderize automaticamente com a estética Sci-Fi
@@ -20,7 +14,6 @@ class MissionUpdateForm(forms.ModelForm):
             'operator_professional': 'PROFISSIONAIS_OPERADORES',
             'operator_fleet': 'FROTAS_OPERACIONAIS',
             'status': 'STATUS_ATUAL',
->>>>>>> Stashed changes
         }
 
         widgets = {

@@ -2,12 +2,12 @@
 
 {% block content %}
 
-<h1 class="text-3xl font-bold underline w-full text-center">Atualização e Criação de Missões</h1>
+<h1 class="text-3xl font-bold underline w-full text-center">Atualização e Definição de Missões Táticas</h1>
 
 <form method="post">
     {% csrf_token %}
 
-    {{ form.as_p }}
+    {{ form.as_div }}
 
     <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4" style="cursor: pointer;">
         Salvar

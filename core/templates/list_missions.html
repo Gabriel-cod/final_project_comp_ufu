@@ -7,7 +7,7 @@
         <div class="flex justify-between items-end mb-6 border-b border-gray-700 pb-2">
             <div>
                 <h1 class="text-2xl text-white tracking-widest">Painel Tático // Missões</h1>
-                <p class="text-xs text-[#42827a] mt-1">STATUS: ONLINE | 12 REGISTROS ENCONTRADOS</p>
+                <p class="text-xs text-[#42827a] mt-1">STATUS: ONLINE | {{ missions.count }} REGISTROS ENCONTRADOS</p>
             </div>
             <!-- Exemplo de Botão Primário -->
             <a href="{% url 'create_mission' %}" class="btn-primary px-6 py-2 text-sm flex items-center gap-2 cursor-pointer">
@@ -57,33 +57,6 @@
                 </div>
             </div>
             {% endfor %}
-
-            <!-- Card Exemplo 2 -->
-            <div class="sci-fi-panel p-5 flex flex-col justify-between border-gray-700 border">
-                <div>
-                    <div class="flex justify-between items-start mb-4">
-                        <span class="text-xs bg-gray-800 text-gray-400 px-2 py-1 border border-gray-700">CONCLUÍDA</span>
-                        <span class="text-xs text-gray-500">ID: #M-8834</span>
-                    </div>
-                    <h3 class="text-lg text-white mb-2 text-gray-500">VARREDURA DE SISTEMA</h3>
-                    <p class="text-xs text-gray-500 mb-4 line-clamp-2">Análise de vulnerabilidade concluída sem anomalias detectadas no perímetro.</p>
-                    
-                    <div class="space-y-2 text-xs mb-6 opacity-70">
-                        <div class="flex justify-between border-b border-gray-800 pb-1">
-                            <span class="text-[#42827a]">PROFISSIONAL:</span>
-                            <span class="text-gray-400">J. DOE</span>
-                        </div>
-                        <div class="flex justify-between border-b border-gray-800 pb-1">
-                            <span class="text-[#42827a]">FROTA:</span>
-                            <span class="text-gray-400">ECHO-BASE</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex gap-3">
-                    <button class="btn-tactical flex-1 py-2 text-xs cursor-pointer text-center opacity-70 hover:opacity-100">Ver Relatório</button>
-                </div>
-            </div>
 
         </div>
         <!-- FIM DO EXEMPLO DO content -->

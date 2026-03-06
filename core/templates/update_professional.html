@@ -4,10 +4,10 @@
 
 <h1 class="text-3xl font-bold underline w-full text-center">Atualização e Criação de Profissionais</h1>
 
-<form method="post" class="max-w-md mx-auto mt-8 p-4 bg-gray-300 rounded">
+<form method="post" class="max-w-md mx-auto mt-8 p-4 rounded">
     {% csrf_token %}
 
-    <table class="table-auto text-left">
+    <table class="table-auto text-left text-black">
         {{ form.as_table }}
     </table>
 
